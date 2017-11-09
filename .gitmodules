@@ -1,3 +1,0 @@
-[submodule "cloud-sdk-docker"]
-	path = cloud-sdk-docker
-	url = https://github.com/jrpossel/cloud-sdk-docker.git
