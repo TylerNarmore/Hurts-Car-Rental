@@ -19,26 +19,26 @@ def hello2():
 	'''
 
 #Admin Calls
-@app.route('/inventory', method=["POST"])
+@app.route('/inventory', methods=["POST"])
 def add_vehicle():
     pass
 
-@app.route('/inventory', method=["PATCH"])
+@app.route('/inventory', methods=["PATCH"])
 def reset_vehicle_status():
     pass
 
-@app.route('/inventory/<vehicleID>', method=["DELETE"])
+@app.route('/inventory/<vehicleID>', methods=["DELETE"])
 def delete_vehicle(vehicleID):
     pass
 
 #User Functions
-@app.route('/inventory', method=["GET"])
+@app.route('/inventory', methods=["GET"])
 def search_vehicle():
     #use request.args.get()
     pass
 
-@app.route('/purchase/<vehicleID>', method=['POST'])
-def purchase_vehicle(vehicleID)
+@app.route('/purchase/<vehicleID>', methods=['POST'])
+def purchase_vehicle(vehicleID):
     pass
 
 if __name__ == "__main__":
