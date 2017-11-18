@@ -36,7 +36,7 @@ def find_vehicle(search_terms):
     #Use these to search REDIS and return list of vehicles that match
     pass
 
-def purchase_vehicle(vehicleID, startDate, endDate):
+def purchase_vehicle(purchaseInformation):
     #Set vehicle quantity to 0 in redis
     #Do something to document it was purchased.
     pass
