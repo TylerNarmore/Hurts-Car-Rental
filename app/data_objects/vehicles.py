@@ -42,27 +42,4 @@ def purchase_vehicle(vehicleID, startDate, endDate):
     pass
 
 
-#Possibly going to be used
-'''
-class Vehicle:
-    def __init__(self, vehicle):
-        self.vehicleID = vehicle["vehicleID"]
-        self.quantity = vehicle["quantity"]
-        self.make = vehicle["make"]
-        self.model = vehicle["model"]
-        self.year = vehicle["year"]
-        self.location = vehicle["location"]
-        self.cost = vehicle["cost"]
-        self.passengers = vehicle["passengers"]
-        self.autoTransmission = vehicle["autoTransmission"]
-        self.type = vehicle["type"]
-        self.mpg = vehicle["mpg"]
-        self.gps = vehicle["specialEquipment"]["gps"]
-        self.maxChildSeat = vehicle["specialEquipment"]["maxChildSeat"]
-        self.skiRack = vehicle["specialEquipment"]["skiRack"]
-        self.snowChains = vehicle["specialEquipment"]["snowChains"]
-        self.leftControl = vehicle["specialEquipment"]["leftControl"]
-
-'''
-
 
