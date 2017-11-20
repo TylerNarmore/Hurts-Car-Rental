@@ -4,4 +4,5 @@ LABEL maintainer = "Josh Possel"
 ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
+EXPOSE 5000
+CMD ["python", "run.py"]
