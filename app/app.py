@@ -37,6 +37,7 @@ def reset_vehicle_status():
 @app.route('/inventory/<vehicleID>', methods=["DELETE"])
 def delete_vehicle(vehicleID):
     vehicles.delete_vehicle(vehicleID)
+    return("200")
 
 
 #User Functions
