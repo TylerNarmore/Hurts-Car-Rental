@@ -1,5 +1,6 @@
-from redis import Redis
+import sqlite3
 
+dbAddress = 'app/data_objects/hurts_db.db'
 
 def add_vehicle(vehicle):
     vehicleID = vehicle["vehicleID"]
@@ -18,7 +19,19 @@ def add_vehicle(vehicle):
     snowChains = vehicle["specialEquipment"]["snowChains"]
     leftControl = vehicle["specialEquipment"]["leftControl"]
 
-    #RedisCall
+    #DB calls
+    try:
+        conn = sqlite3.connect(dbAddress)
+        cursor = conn.cursor()
+
+        cursor.execute("INSERT INTO inventory VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                       (vehicleID, make, model, year, location, cost, passengers,
+                       autoTransmission, type, mpg, gps, maxChildSeat, skiRack,
+                       snowChains, leftControl))
+        conn.commit()
+        conn.close()
+    except sqlite3.IntegrityError :
+        return(0)
     return(1)
 
 
@@ -36,8 +49,17 @@ def delete_vehicle(vehicleID):
 
 def find_vehicle(search_terms):
     #Search terms is a dictionary of terms being searched with the category
-    #Use these to search REDIS and return list of vehicles that match
-    pass
+    conn = sqlite3.connect(dbAddress)
+    cursor = conn.cursor()
+    if(len(search_terms) > 0):
+        for key in search_terms:
+            query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
+            cursor.execute(query)
+    else:
+        cursor.execute("SELECT * FROM inventory;")
+    vehicles = cursor.fetchall()
+    conn.close()
+    return(vehicles)
 
 
 def purchase_vehicle(purchaseInformation):

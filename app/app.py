@@ -22,8 +22,11 @@ def index():
 @app.route('/inventory', methods=["POST"])
 def add_vehicle():
     vehicle_information = request.get_json()
-    #test = Vehicle(vehicle_information)
-    return("201")
+    err = vehicles.add_vehicle(vehicle_information)
+    if (err == 0):
+        return("400: vehicleID already in use")
+    else:
+        return("201")
 
 
 @app.route('/inventory', methods=["PATCH"])
@@ -41,7 +44,9 @@ def delete_vehicle(vehicleID):
 def search_vehicle():
     #use request.args.get()
     search_terms = request.args
-    vehicles.find_vehicle(search_terms)
+    found_vehicles = vehicles.find_vehicle(search_terms)
+
+    return jsonify(found_vehicles)
 
 
 @app.route('/purchase/<vehicleID>', methods=['POST'])
