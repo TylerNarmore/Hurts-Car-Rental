@@ -42,9 +42,12 @@ def reset_vehicles_status():
 
 
 def delete_vehicle(vehicleID):
-    #Check if vehicle exists
-    #Delete if it does and return a good message, return bad message if it doesn't
-    pass
+    conn = sqlite3.connect(dbAddress)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM inventory WHERE vehicleID=?", [vehicleID])
+    conn.commit()
+    conn.close()
+    return(0)
 
 
 def find_vehicle(search_terms):
@@ -58,8 +61,31 @@ def find_vehicle(search_terms):
     else:
         cursor.execute("SELECT * FROM inventory;")
     vehicles = cursor.fetchall()
+    vehicle_dictionary_array = []
+    for vehicle in vehicles:
+        vehicle_dictionary = {
+            "vehicleID":vehicle[0],
+            "make": vehicle[1],
+            "model": vehicle[2],
+            "year": vehicle[3],
+            "location": vehicle[4],
+            "cost": vehicle[5],
+            "passengers": vehicle[6],
+            "autoTransmission": vehicle[7],
+            "type": vehicle[8],
+            "mpg": vehicle[9],
+            "specialEquipment": {
+                "gps": vehicle[10],
+                "maxChildSeat": vehicle[11],
+                "skiRack": vehicle[12],
+                "snowChains": vehicle[13],
+                "leftControl": vehicle[14]
+            }
+        }
+        vehicle_dictionary_array.append(vehicle_dictionary)
+
     conn.close()
-    return(vehicles)
+    return(vehicle_dictionary_array)
 
 
 def purchase_vehicle(purchaseInformation):
