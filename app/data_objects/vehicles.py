@@ -75,7 +75,7 @@ def find_vehicle(search_terms):
                 query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
                 cursor.execute(query)
     else:
-        cursor.execute("SELECT * FROM inventory")
+        cursor.execute("SELECT * FROM inventory;")
     vehicles = cursor.fetchall()
     vehicle_dictionary_array = []
     for vehicle in vehicles:
