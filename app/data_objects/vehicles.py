@@ -36,9 +36,13 @@ def add_vehicle(vehicle):
 
 
 def reset_vehicles_status():
-    #Call redis to reset all vehicles back to their default.
-    #AKA set quantity back to 1 and startDate and endDate to nothing
-    pass
+    #Remove all reservations from system
+    conn = sqlite3.connect(dbAddress)
+    cursor = conn.cursor()
+    cursor.execute("DELETE * FROM reservation;")
+    conn.commit()
+    conn.close()
+    return(1)
 
 
 def delete_vehicle(vehicleID):
@@ -54,10 +58,22 @@ def find_vehicle(search_terms):
     #Search terms is a dictionary of terms being searched with the category
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
+
+
+    if("startDate" in search_terms.keys() and "endDate" in search_terms.keys() or
+           (not("startDate" in search_terms.keys()) and not("endDate" in search_terms.keys()))):
+        pass
+    else:
+        #Missing either start or end date query
+        return(-1)
+
     if(len(search_terms) > 0):
         for key in search_terms:
-            query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
-            cursor.execute(query)
+            if(key == "startDate" or key == "endDate"):
+                cursor.execute("SELECT * FROM inventory i WHERE NOT EXISTS (SELECT vehicleID FROM reservation r WHERE i.vehicleID = r.vehicleID AND endDate > ? AND startDate < ?);", (search_terms['startDate'],search_terms['endDate']))
+            else:
+                query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
+                cursor.execute(query)
     else:
         cursor.execute("SELECT * FROM inventory;")
     vehicles = cursor.fetchall()
@@ -89,6 +105,19 @@ def find_vehicle(search_terms):
 
 
 def purchase_vehicle(purchaseInformation):
-    #Set vehicle quantity to 0 in redis
-    #Do something to document it was purchased.
-    pass
+    vehicleID = purchaseInformation["vehicleID"]
+    startDate = purchaseInformation["startDate"]
+    endDate = purchaseInformation["endDate"]
+
+    conn = sqlite3.connect(dbAddress)
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM reservation WHERE vehicleID = ? AND endDate > ? AND startDate < ?", (vehicleID, startDate, endDate))
+    conflicts = cursor.fetchall()
+    if(len(conflicts) == 0):
+        cursor.execute("INSERT INTO reservation VALUES (?,?,?)", (vehicleID, startDate, endDate))
+        print("success")
+    else:
+        print("ERROR:")
+        print(conflicts)
+    conn.commit()
+    conn.close()
