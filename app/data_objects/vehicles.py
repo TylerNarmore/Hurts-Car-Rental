@@ -54,10 +54,22 @@ def find_vehicle(search_terms):
     #Search terms is a dictionary of terms being searched with the category
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
+    if("startDate" in search_terms.keys() and "endDate" in search_terms.keys() or
+           (not("startDate" in search_terms.keys()) and not("endDate" in search_terms.keys()))):
+        pass
+    else:
+        #Missing either start or end date query
+        return(-1)
+
     if(len(search_terms) > 0):
         for key in search_terms:
-            query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
-            cursor.execute(query)
+            if(key == "startDate"):
+                cursor.execute("SELECT * FROM inventory WHERE endDate >= ?;", search_terms[key])
+            elif(key == "endDate"):
+                cursor.execute("SELECT * FROM inventory WHERE startDate <= ?;", search_terms[key])
+            else:
+                query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
+                cursor.execute(query)
     else:
         cursor.execute("SELECT * FROM inventory;")
     vehicles = cursor.fetchall()
