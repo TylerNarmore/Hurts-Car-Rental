@@ -54,7 +54,7 @@ def search_vehicle():
 def purchase_vehicle(vehicleID):
     reservation_information = request.get_json()
     vehicles.purchase_vehicle(reservation_information)
-
+    return("200")
 
 def main():
     app.run(host="0.0.0.0", debug=True)
