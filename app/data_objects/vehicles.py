@@ -36,9 +36,13 @@ def add_vehicle(vehicle):
 
 
 def reset_vehicles_status():
-    #Call redis to reset all vehicles back to their default.
-    #AKA set quantity back to 1 and startDate and endDate to nothing
-    pass
+    #Remove all reservations from system
+    conn = sqlite3.connect(dbAddress)
+    cursor = conn.cursor()
+    cursor.execute("DELETE * FROM reservation;")
+    conn.commit()
+    conn.close()
+    return(1)
 
 
 def delete_vehicle(vehicleID):
