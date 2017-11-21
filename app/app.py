@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, abort, request
 from flask_cors import CORS, cross_origin
 from app.data_objects import vehicles
-from app import sanitize
+from app.sanitize import *
 
 
 app = Flask(__name__)
@@ -46,7 +46,7 @@ def delete_vehicle(vehicleID):
 def search_vehicle():
     #use request.args.get()
     search_terms = request.args
-    search_terms = santize_search(search_terms)
+    search_terms = sanitize_search(search_terms)
     found_vehicles = vehicles.find_vehicle(search_terms)
 
     return jsonify(found_vehicles)
