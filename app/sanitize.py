@@ -1,9 +1,13 @@
 forbidden = [";", "'"]
 
 def sanitize_search(s):
-	new_s = s.lower()
-	new_s = new_s.replace("'", "")
-	new_s = new_s.replace(";", "")
+	new_s = {}
+	for key in s:
+		tempKey = key.replace("'", "")
+		tempKey = tempKey.replace(";", "")
+		tempValue = s[key].replace("'", "")
+		tempValue = tempValue.replace(";", "")
+		new_s[tempKey] = tempValue
 	return new_s
 
 def sanitize_input(s, forbidden):
