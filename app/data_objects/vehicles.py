@@ -62,23 +62,20 @@ def find_vehicle(search_terms):
 
     if("startDate" in search_terms.keys() and "endDate" in search_terms.keys() or
            (not("startDate" in search_terms.keys()) and not("endDate" in search_terms.keys()))):
-        cursor.execute(
-            "SELECT * FROM inventory LEFT OUTER JOIN reservation ON inventory.vehicleID = reservation.vehicleID")
+        pass
     else:
         #Missing either start or end date query
         return(-1)
 
     if(len(search_terms) > 0):
         for key in search_terms:
-            if(key == "startDate"):
-                cursor.execute("SELECT * FROM inventory  WHERE NOT (endDate > ?);", [search_terms[key]])
-            elif(key == "endDate"):
-                cursor.execute("SELECT * FROM inventory WHERE NOT(startDate < ?);", [search_terms[key]])
+            if(key == "startDate" or key == "endDate"):
+                cursor.execute("SELECT * FROM inventory i WHERE NOT EXISTS (SELECT vehicleID FROM reservation r WHERE i.vehicleID = r.vehicleID AND endDate > ? AND startDate < ?);", (search_terms['startDate'],search_terms['endDate']))
             else:
                 query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
                 cursor.execute(query)
     else:
-        cursor.execute("SELECT * FROM inventory;")
+        cursor.execute("SELECT * FROM inventory")
     vehicles = cursor.fetchall()
     vehicle_dictionary_array = []
     for vehicle in vehicles:
