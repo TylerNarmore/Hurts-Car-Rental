@@ -1,6 +1,19 @@
 import sqlite3
+import datetime
 
 dbAddress = 'app/data_objects/hurts_db.db'
+valid_query_fields = ['location', 'startDate', 'endDate', 'minPrice', 'maxPrice',
+                      'minPassenger', 'make', 'model', 'type',
+                      'minMPG', 'gps', 'minChildSeats', 'skiRack', 'snowChains',
+                      'leftControl', 'autoTransmission', 'year']
+
+def validate(date_text):
+    try:
+        datetime.datetime.strptime(date_text, '%Y-%m-%dT%H:%M:%S')
+        return(1)
+    except ValueError:
+        return(-1)
+
 
 def add_vehicle(vehicle):
     vehicleID = vehicle["vehicleID"]
@@ -59,23 +72,51 @@ def find_vehicle(search_terms):
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
 
+    #Confirm both dates are present or neither dates are present.
+    if not("startDate" in search_terms.keys() and "endDate" in search_terms.keys() or
+            (not ("startDate" in search_terms.keys()) and not ("endDate" in search_terms.keys()))):
+        return(('400', "Only start date or end date provided"))
+    for key in search_terms:
+        if not(key in valid_query_fields):
+            return(('400', "Invalid query field: "+key))
 
-    if("startDate" in search_terms.keys() and "endDate" in search_terms.keys() or
-           (not("startDate" in search_terms.keys()) and not("endDate" in search_terms.keys()))):
-        pass
-    else:
-        #Missing either start or end date query
-        return(-1)
-
-    if(len(search_terms) > 0):
-        for key in search_terms:
-            if(key == "startDate" or key == "endDate"):
-                cursor.execute("SELECT * FROM inventory i WHERE NOT EXISTS (SELECT vehicleID FROM reservation r WHERE i.vehicleID = r.vehicleID AND endDate > ? AND startDate < ?);", (search_terms['startDate'],search_terms['endDate']))
+        if(key == 'location'):
+            cursor.execute('SELECT * FROM inventory WHERE location = ?;', [search_terms[key]])
+        elif(key == 'startDate' or key == 'endDate'):
+            if(validate(search_terms['startDate'])==1 and validate(search_terms['endDate']==1)):
+                if(datetime.datetime.strptime(search_terms['startDate'], '%Y-%m-%dT%H:%M:%S') > datetime.datetime.strptime(search_terms['endDate'], '%Y-%m-%dT%H:%M:%S')):
+                    return(('422', "Error: Start date after end date"))
             else:
-                query = "SELECT * FROM inventory WHERE " + key + "='" + search_terms[key] +"';"
-                cursor.execute(query)
-    else:
-        cursor.execute("SELECT * FROM inventory;")
+                return(('422', "Error: Datetime formatted incorrectly"))
+            cursor.execute("SELECT * FROM inventory i WHERE NOT EXISTS (SELECT vehicleID FROM reservation r WHERE i.vehicleID = r.vehicleID AND endDate > ? AND startDate < ?);", (search_terms['startDate'],search_terms['endDate']))
+        elif(key == 'minPrice'):
+            cursor.execute("SELECT  * FROM inventory WHERE cost >= ?;", [search_terms[key]])
+        elif(key == 'maxPrice'):
+            cursor.execute("SELECT  * FROM inventory WHERE cost <= ?;", [search_terms[key]])
+        elif(key == 'minPassenger'):
+            cursor.execute("SELECT * FROM inventory WHERE passengers >= ?;", [search_terms[key]])
+        elif(key == 'make'):
+            cursor.execute("SELECT * FROM inventory WHERE make = ?;", [search_terms[key]])
+        elif(key == 'model'):
+            cursor.execute("SELECT * FROM inventory WHERE model = ?;", [search_terms[key]])
+        elif(key == 'type'):
+            cursor.execute("SELECT * FROM inventory WHERE type = ?", [search_terms[key]])
+        elif(key == 'minMPG'):
+            cursor.execute("SELECT * FROM inventory WHERE mpg >= ?", [search_terms[key]])
+        elif(key == 'gps'):
+            cursor.execute("SELECT * FROM inventory WHERE gps = ?", [search_terms[key]])
+        elif(key == 'minChildSeat'):
+            cursor.execute("SELECT * FROM inventory WHERE maxChildSeat >= ?;", [search_terms[key]])
+        elif(key == 'skiRack'):
+            cursor.execute("SELECT * FROM inventory WHERE skiRack = ?;", [search_terms[key]])
+        elif(key == 'snowChains'):
+            cursor.execute("SELECT * FROM inventory WHERE snowChains = ?;", [search_terms[key]])
+        elif(key == 'leftControl'):
+            cursor.execute("SELECT * FROM inventory WHERE leftControl = ?;", [search_terms[key]])
+        elif(key == 'autoTransmission'):
+            cursor.execute("SELECT * FROM inventory WHERE autoTransmission = ?;", [search_terms[key]])
+        elif(key == 'year'):
+            cursor.execute("SELECT * FROM inventory WHERE year = ?;", [search_terms[key]])
     vehicles = cursor.fetchall()
     vehicle_dictionary_array = []
     for vehicle in vehicles:
@@ -99,9 +140,11 @@ def find_vehicle(search_terms):
             }
         }
         vehicle_dictionary_array.append(vehicle_dictionary)
-
     conn.close()
-    return(vehicle_dictionary_array)
+    if(len(vehicle_dictionary_array) == 0):
+        return('400', "No vehicles found")
+    else:
+        return(('200',vehicle_dictionary_array))
 
 
 def purchase_vehicle(purchaseInformation):

@@ -47,9 +47,11 @@ def search_vehicle():
     #use request.args.get()
     search_terms = request.args
     search_terms = sanitize_search(search_terms)
-    found_vehicles = vehicles.find_vehicle(search_terms)
-
-    return jsonify(found_vehicles)
+    search_results = vehicles.find_vehicle(search_terms)
+    if(search_results[0] == '200'):
+        return jsonify(status=search_results[0], vehicles=search_results[1])
+    else:
+        return jsonify(status=search_results[0], message=search_results[1])
 
 
 @app.route('/purchase/<vehicleID>', methods=['POST'])
