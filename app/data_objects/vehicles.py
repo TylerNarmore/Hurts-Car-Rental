@@ -76,6 +76,8 @@ def find_vehicle(search_terms):
     if not("startDate" in search_terms.keys() and "endDate" in search_terms.keys() or
             (not ("startDate" in search_terms.keys()) and not ("endDate" in search_terms.keys()))):
         return(('400', "Only start date or end date provided"))
+    if(len(search_terms) == 0):
+        cursor.execute('SELECT * FROM inventory;')
     for key in search_terms:
         if not(key in valid_query_fields):
             return(('400', "Invalid query field: "+key))
