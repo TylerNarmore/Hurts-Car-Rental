@@ -9,7 +9,6 @@ valid_query_fields = ['location', 'startDate', 'endDate', 'minPrice', 'maxPrice'
 
 def validate(date_text):
     try:
-        print(date_text)
         datetime.datetime.strptime(date_text, '%Y-%m-%dT%H:%M:%S')
         return(1)
     except ValueError:
