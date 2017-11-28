@@ -9,6 +9,7 @@ valid_query_fields = ['location', 'startDate', 'endDate', 'minPrice', 'maxPrice'
 
 def validate(date_text):
     try:
+        print(date_text)
         datetime.datetime.strptime(date_text, '%Y-%m-%dT%H:%M:%S')
         return(1)
     except ValueError:
@@ -85,7 +86,7 @@ def find_vehicle(search_terms):
         if(key == 'location'):
             cursor.execute('SELECT * FROM inventory WHERE location = ?;', [search_terms[key]])
         elif(key == 'startDate' or key == 'endDate'):
-            if(validate(search_terms['startDate'])==1 and validate(search_terms['endDate']==1)):
+            if(validate(search_terms['startDate'])==1 and validate(search_terms['endDate'])==1):
                 if(datetime.datetime.strptime(search_terms['startDate'], '%Y-%m-%dT%H:%M:%S') > datetime.datetime.strptime(search_terms['endDate'], '%Y-%m-%dT%H:%M:%S')):
                     return(('422', "Error: Start date after end date"))
             else:
