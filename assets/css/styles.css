@@ -1,0 +1,156 @@
+/*
+	General Styles
+
+	Colors
+	@highlight: #196E76
+	@text: #4A4A4A;
+	@text-light: #9A9A9A
+	@body-background: #EEEEEE;
+*/
+
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+ 
+html {
+  box-sizing: border-box;
+  background: #EEEEEE;
+  text-align: center;
+}
+ 
+body {
+    font-size: 1em;
+    line-height: 1.5;
+    font-family: Lucida Grande, sans-serif;
+    max-width: 43.75em; /* 880/16 */
+    margin: 0 auto;
+    padding: 0;
+    color: #4A4A4A;
+}
+ 
+img {
+    max-width: 100%;
+    height: auto;    
+}
+ 
+a {
+    color: inherit;
+}
+
+/*
+	Header Styles
+*/
+header {
+	margin: 1em 0 2em;
+	color: #196E76;
+}
+
+	header h1 {
+		font-family: 'Pacifico', serif;
+		font-size: 3em;
+		text-shadow: 0 4px 2px rgba(0, 0, 0, .1);
+		margin: 0;
+	}
+
+		header h1 a {
+			text-decoration: none;
+		}
+
+	header p {
+		margin-top: -.625em;
+		text-indent: 7.75em; /* indent slightly */
+		text-shadow: 0 1px 0px rgba(0, 0, 0, .15);
+		font-size: .875em; /* 14/16 */
+	}
+
+@media screen and (max-width: 600px) {
+	header p {
+		text-indent: 0;
+		margin-top: .5em;
+	}
+}
+
+/*
+	Form Input
+	Styles for the form input and buttons
+*/
+form {
+	position: relative;
+}
+
+	form input{
+		display: inline-block;
+		font-size: 1em;
+		line-height: 1.5;
+		margin: 0;
+		border: 1px solid #bbb;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, .1) inset,
+					0 2px 4px rgba(0, 0, 0, .1);
+		border-radius: 3px;
+	}
+
+		form input:focus {
+			border-color: #298cda;
+		}
+
+	form button {
+		text-decoration: none;
+		background: #196E76;
+		position: relative;
+		right: 0;
+		top: 0;
+		line-height: 1.5;
+		color: white;
+		font-size: 1em;
+		border-radius: 0 3px 3px 0;
+		border: 0;
+		outline: 0;
+		text-align: center;
+		-webkit-appearance: none;
+		margin: 0;
+		padding: 0 1em;
+		font-family: 'Pacifico', serif;
+	}
+		form button:hover {
+			cursor: pointer;
+		}
+
+		form button:disabled {
+			opacity: .5;
+		}
+
+/*
+	Content Styles
+	Main container for content, i.e. the resulting vehicles
+*/
+.wrapper {
+	background: #fff;
+	border: 1px solid #ccc;
+	text-align: center;
+	padding: 2em;
+	margin: .5em 0 2em;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+	border-radius: 3px;
+	position: relative;
+}
+
+.content {
+	max-width: 512px;
+	margin: 0 auto;
+	position: relative;
+	word-wrap: break-word;
+}
+	
+	.content * {
+		margin: 0;
+		padding: 0;
+	}
+
+	.content strong {
+		font-weight: bold;
+		display: block;
+	}

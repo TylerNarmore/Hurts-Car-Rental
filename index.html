@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Hurts Car Rental</title>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  </head>
+  <body>
+  	<header>
+  		<h1><a href="./">Hurts Car Rental</a></h1>
+  		<p>Painless car rentals.</p>
+  	</header>
+  	<main>
+  		<!-- input -->
+  		<form id="myForm">
+  			<fieldset>
+  				<legend>Input Car Rental Information</legend>
+  				Location: <input type="text" name="location" placeholder="Starkville, MS"><br>
+  				Start Date: <input type="date" name="startDate" placeholder=""><br>
+  				End Date: <input type="date" name="endDate" placeholder=""><br>
+  				Minimum Price: <input type="number" name="minPrice" placeholder=""><br>
+  				Maximum Price: <input type="number" name="maxPrice" placeholder=""><br>
+  				Minimum Passengers: <input type="number" name="minPassengers" placeholder=""><br>
+  				Make: <input type="text" name="make" placeholder=""><br>
+  				Model: <input type="text" name="model" placeholder=""><br>
+  				Year: <input type="text" name="year" placeholder=""><br>
+  				Type: <input type="text" name="type" placeholder=""><br>
+  				Minimum MPG: <input type="number" name="mpg" placeholder=""><br>
+  				<fieldset>
+  					<legend>Additional Features</legend>
+  					GPS:
+  					<input type="radio" name="gps" value="1"> Yes
+  					<input type="radio" name="gps" value="0"> No<br>
+  					Ski Rack:
+  					<input type="radio" name="skiRack" value="1"> Yes
+  					<input type="radio" name="skiRack" value="0"> No<br>
+  					Snow Chains:
+  					<input type="radio" name="snowChains" value="1"> Yes
+  					<input type="radio" name="snowChains" value="0"> No<br>
+  					Lefthand Control:
+  					<input type="radio" name="leftControl" value="1"> Yes
+  					<input type="radio" name="leftControl" value="0"> No<br>
+  					Automatic Transmission:
+  					<input type="radio" name="autoTransmission" value="1"> Yes
+  					<input type="radio" name="autoTransmission" value="0"> No<br>
+  					Minimum Child Seats: <input type="number" name="minChildSeats" placeholder="">
+  				</fieldset>
+  				<button type="submit">Search</button>
+  				<button type="submit">Display All</button>
+  			</fieldset> 
+  		</form>
+  		<!-- ./input -->
+  		<!-- output -->
+  		<div class="wrapper">
+  			<div class="content">
+  			</div>
+  		</div>
+  	</main>
+  	<footer></footer>
+  	<script type="text/javascript" src="assets/js/libs/jquery-3.1.1.min.js"></script>
+  	<script type="text/javascript" src="assets/js/main.js"></script>
+  </body>
+ </html>
