@@ -16,6 +16,14 @@ def validate(date_text):
 
 
 def add_vehicle(vehicle):
+    required_fields = ["vehicleID", "make", "model", "year", "location", "cost", "passengers", "autoTransmission", "type", "mpg", "specialEquipment"]
+    required_equipment = ["gps", "maxChildSeat", "skiRack", "snowChains", "leftControl"]
+    for each in required_fields:
+        if not(each in vehicle.keys()):
+            return(('400', "Insufficient data to add vehicle."))
+    for each in required_equipment:
+        if not(each in vehicle["specialEquipment"].keys()):
+            return(('400', "Insufficient data to add vehicle."))
     vehicleID = vehicle["vehicleID"]
     make = vehicle["make"]
     model = vehicle["model"]
@@ -59,6 +67,8 @@ def reset_vehicles_status():
 
 
 def delete_vehicle(vehicleID):
+    if ("vehicleID" not in vehicleID.keys()):
+        return (('400', "Vehicle ID not provided."))
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
     cursor.execute("DELETE FROM inventory WHERE vehicleID=?", [vehicleID])
@@ -150,6 +160,9 @@ def find_vehicle(search_terms):
 
 
 def purchase_vehicle(purchaseInformation):
+    if ("vehicleID" not in purchaseInformation.keys() or "startDate" not in purchaseInformation.keys() or 
+            "endDate" not in purchaseInformation.keys()):
+        return (('400', "Missing information for purchase."))
     vehicleID = purchaseInformation["vehicleID"]
     startDate = purchaseInformation["startDate"]
     endDate = purchaseInformation["endDate"]
