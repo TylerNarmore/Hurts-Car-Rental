@@ -136,7 +136,6 @@ def search_reservations(search_terms):
             query_string += "year = '" + search_terms[key] + "'"
 
     query_string += ";"
-    print(query_string)
     cursor.execute(query_string)
     reservations = cursor.fetchall()
     reservations_info_list = []
