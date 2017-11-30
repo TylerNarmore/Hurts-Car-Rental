@@ -21,9 +21,9 @@ def index():
 
 #Admin Calls
 @app.route('/inventory', methods=["POST"])
-def add_vehicle():
+def add_vehicles():
     vehicle_information = request.get_json()
-    err = vehicles.add_vehicle(vehicle_information)
+    err = vehicles.add_vehicles(vehicle_information)
     if (err == 0):
         return("400: vehicleID already in use")
     else:
@@ -33,12 +33,26 @@ def add_vehicle():
 @app.route('/inventory', methods=["PATCH"])
 def reset_vehicle_status():
     vehicles.reset_vehicles_status()
+    return(jsonify(status="200"))
 
 
 @app.route('/inventory/<vehicleID>', methods=["DELETE"])
 def delete_vehicle(vehicleID):
     vehicles.delete_vehicle(vehicleID)
-    return("200")
+    return(jsonify(status="200"))
+
+
+@app.route('/reservations', methods=["GET"])
+def search_reservations():
+    search_terms = request.args
+    search_terms = sanitize_search(search_terms)
+    print(len(search_terms))
+    search_results = vehicles.search_reservations(search_terms)
+    if(search_results[0] == '200'):
+        return jsonify(status=search_results[0], vehicles=search_results[1])
+    else:
+        return jsonify(status=search_results[0], message=search_results[1])
+
 
 
 #User Functions
