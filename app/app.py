@@ -25,9 +25,9 @@ def add_vehicles():
     vehicle_information = request.get_json()
     err = vehicles.add_vehicles(vehicle_information)
     if (err == 0):
-        return("400: vehicleID already in use")
+        return(jsonify(status="400", message="One of the vehicleIDs is already in use"))
     else:
-        return("201")
+        return(jsonify(status="200"))
 
 
 @app.route('/inventory', methods=["PATCH"])
@@ -71,8 +71,11 @@ def search_vehicle():
 @app.route('/purchase/<vehicleID>', methods=['POST'])
 def purchase_vehicle(vehicleID):
     reservation_information = request.get_json()
-    vehicles.purchase_vehicle(reservation_information)
-    return("200")
+    return_status = vehicles.purchase_vehicle(reservation_information)
+    if return_status == "200":
+        return(jsonify(status = "200"))
+    else:
+        return(jsonify(status = return_status[0], conflicts=return_status[1]))
 
 
 def main():

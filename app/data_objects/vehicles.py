@@ -55,7 +55,7 @@ def reset_vehicles_status():
     #Remove all reservations from system
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
-    cursor.execute("DELETE * FROM reservation;")
+    cursor.execute("DELETE FROM reservation;")
     conn.commit()
     conn.close()
     return(1)
@@ -67,7 +67,7 @@ def delete_vehicle(vehicleID):
     cursor.execute("DELETE FROM inventory WHERE vehicleID=?", [vehicleID])
     conn.commit()
     conn.close()
-    return(0)
+    return (1)
 
 
 def search_reservations(search_terms):
@@ -168,7 +168,7 @@ def search_reservations(search_terms):
         reservations_info_list.append({"vehicleInfo":vehicle_dictionary, "reservationInfo": reservation_dictionary})
 
     if len(reservations_info_list) == 0:
-        return ('404', "No vehicles found")
+        return ('404', "No reservations found")
     else:
         return(("200", reservations_info_list))
 
@@ -280,9 +280,8 @@ def purchase_vehicle(purchaseInformation):
     conflicts = cursor.fetchall()
     if(len(conflicts) == 0):
         cursor.execute("INSERT INTO reservation VALUES (?,?,?)", (vehicleID, startDate, endDate))
-        print("success")
+        return("200")
     else:
-        print("ERROR:")
-        print(conflicts)
+       return(("422", conflicts))
     conn.commit()
     conn.close()
