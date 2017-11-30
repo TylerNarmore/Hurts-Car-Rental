@@ -161,6 +161,7 @@ def search_reservations(search_terms):
             }
         }
         reservation_dictionary = {
+            "vehicleID": reservation[15],
             "startDate": reservation[17],
             "endDate": reservation[16]
         }
