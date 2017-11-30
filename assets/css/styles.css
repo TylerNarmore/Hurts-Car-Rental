@@ -1,19 +1,8 @@
-/*
-	General Styles
-
-	Colors
-	@highlight: #196E76
-	@text: #4A4A4A;
-	@text-light: #9A9A9A
-	@body-background: #EEEEEE;
-*/
-
-*, 
-*:before, 
-*:after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
+@font-face {
+	font-family: Splash Gordon;
+	src: url{"Splash Gordon.ttf"},
+		 url{"Splash Gordon.otf"},
+		 url{"Splash Gordon.pfb"};
 }
  
 html {
@@ -25,16 +14,11 @@ html {
 body {
     font-size: 1em;
     line-height: 1.5;
-    font-family: Lucida Grande, sans-serif;
+    font-family: BTTF, sans-serif;
     max-width: 43.75em; /* 880/16 */
     margin: 0 auto;
     padding: 0;
-    color: #4A4A4A;
-}
- 
-img {
-    max-width: 100%;
-    height: auto;    
+    color: #000000;
 }
  
 a {
@@ -46,11 +30,11 @@ a {
 */
 header {
 	margin: 1em 0 2em;
-	color: #196E76;
+	color: #000000;
 }
 
 	header h1 {
-		font-family: 'Pacifico', serif;
+		font-family: Splash Gordon;
 		font-size: 3em;
 		text-shadow: 0 4px 2px rgba(0, 0, 0, .1);
 		margin: 0;
@@ -64,7 +48,9 @@ header {
 		margin-top: -.625em;
 		text-indent: 7.75em; /* indent slightly */
 		text-shadow: 0 1px 0px rgba(0, 0, 0, .15);
+		font-family: BTTF;
 		font-size: .875em; /* 14/16 */
+		font-style: italic;
 	}
 
 @media screen and (max-width: 600px) {
@@ -127,7 +113,7 @@ form {
 	Content Styles
 	Main container for content, i.e. the resulting vehicles
 */
-.wrapper {
+#wrapper {
 	background: #fff;
 	border: 1px solid #ccc;
 	text-align: center;
@@ -138,19 +124,8 @@ form {
 	position: relative;
 }
 
-.content {
-	max-width: 512px;
-	margin: 0 auto;
+.container {
+	border-bottom: 1px solid gray;
 	position: relative;
-	word-wrap: break-word;
 }
-	
-	.content * {
-		margin: 0;
-		padding: 0;
-	}
 
-	.content strong {
-		font-weight: bold;
-		display: block;
-	}
