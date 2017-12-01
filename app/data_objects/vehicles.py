@@ -273,15 +273,16 @@ def purchase_vehicle(purchaseInformation):
     vehicleID = purchaseInformation["vehicleID"]
     startDate = purchaseInformation["startDate"]
     endDate = purchaseInformation["endDate"]
-
+    print
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM reservation WHERE vehicleID = ? AND endDate > ? AND startDate < ?", (vehicleID, startDate, endDate))
     conflicts = cursor.fetchall()
     if(len(conflicts) == 0):
         cursor.execute("INSERT INTO reservation VALUES (?,?,?)", (vehicleID, startDate, endDate))
-        return("200")
+
     else:
        return(("422", conflicts))
     conn.commit()
     conn.close()
+    return ("200")
