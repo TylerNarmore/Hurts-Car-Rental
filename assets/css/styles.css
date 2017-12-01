@@ -1,10 +1,3 @@
-@font-face {
-	font-family: Splash Gordon;
-	src: url{"Splash Gordon.ttf"},
-		 url{"Splash Gordon.otf"},
-		 url{"Splash Gordon.pfb"};
-}
- 
 html {
   box-sizing: border-box;
   background: #EEEEEE;
@@ -14,15 +7,11 @@ html {
 body {
     font-size: 1em;
     line-height: 1.5;
-    font-family: BTTF, sans-serif;
+    font-family: 'Permanent Marker';
     max-width: 43.75em; /* 880/16 */
     margin: 0 auto;
     padding: 0;
     color: #000000;
-}
- 
-a {
-    color: inherit;
 }
 
 /*
@@ -34,7 +23,7 @@ header {
 }
 
 	header h1 {
-		font-family: Splash Gordon;
+		font-family: 'Permanent Marker', cursive;
 		font-size: 3em;
 		text-shadow: 0 4px 2px rgba(0, 0, 0, .1);
 		margin: 0;
@@ -48,7 +37,7 @@ header {
 		margin-top: -.625em;
 		text-indent: 7.75em; /* indent slightly */
 		text-shadow: 0 1px 0px rgba(0, 0, 0, .15);
-		font-family: BTTF;
+		font-family: 'Permanent Marker', cursive;
 		font-size: .875em; /* 14/16 */
 		font-style: italic;
 	}
@@ -99,7 +88,7 @@ form {
 		-webkit-appearance: none;
 		margin: 0;
 		padding: 0 1em;
-		font-family: 'Pacifico', serif;
+		font-family: 'Permanent Marker';
 	}
 		form button:hover {
 			cursor: pointer;
