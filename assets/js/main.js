@@ -1,25 +1,57 @@
 /*--------------------------------------------------------------------
  * main.js Handles API calls
  *--------------------------------------------------------------------*/
+myAudio = new Audio('assets/sounds/bg_music.mp3');
+if (typeof myAudio.loop == 'boolean') {
+	myAudio.loop = true;
+}
+else {
+	myAudio.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+}
+myAudio.play();
+
 window.addEventListener("load", function() {
 	var getForm = document.getElementById("getForm");
 	var elements = getForm.elements;
+
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 4,
+			center: data
+		});
+		var marker = new google.maps.Marker ({
+			position: data,
+			map: map
+		});
+	}
 
 	function sendData() {
 		// If an input was left blank disable it from form
 		for (var i = 0; element = elements[i++];) {
 			if (element.value === "")
 				element.disabled = true;
+
+			else if (element.id == "location") {
+				if (element.value = "Home") {
+					window.location.href = "http://softwarebois.com";
+				}
+			}
+
+			// Correctly format date values for search -- FIX THIS sober Josh
+			else if (element.id == 'start' || element.id == 'end') {
+				element.value = element.value + "T12:00:00";
+				console.log(element.value);
+			}
 		}
 
 		var getXHR = new XMLHttpRequest();
 
-		// Bind the FormData object and the form element
-		var fd = new FormData(getForm);
-
 		// Define what happens in case of error
 		getXHR.addEventListener("error", function(event) {
-			alert('An error has occured. Abandon ship! Abandon ship! Mayday!');
+			alert('An error has occured.');
 		});
 
 		// Define what happens when data is returned from GET request
@@ -54,6 +86,7 @@ window.addEventListener("load", function() {
 					tempContainer.append(postForm);
 
 					var field = document.createElement("fieldset");
+					field.className = "outputField";
 					postForm.append(field);
 
 					var legend = document.createElement("legend");
@@ -62,13 +95,13 @@ window.addEventListener("load", function() {
 
 					// Create inputs for form
 					var startDate = document.createElement("input");
-					startDate.setAttribute('type', 'date');
+					startDate.setAttribute('type', 'datetime-local');
 					startDate.setAttribute('step', '1');
 					startDate.setAttribute('name', 'startDate')
 					field.append(startDate);
 
 					var endDate = document.createElement("input");
-					endDate.setAttribute('type', 'date');
+					endDate.setAttribute('type', 'datetime-local');
 					endDate.setAttribute('step', '1');
 					endDate.setAttribute('name', 'endDate');
 					field.append(endDate);
@@ -138,21 +171,20 @@ window.addEventListener("load", function() {
 		}
 
 		// Set up GET request
-		getXHR.open("GET", "http://softwarebois.com/inventory", true);
-
-		for (var key of fd.keys()) {
-			console.log(key);
-			console.log(fd.get(key));
-		}
-
-		// The data sent is what the user provided in the form
-		getXHR.send(fd);
+		var protoURL = "http://softwarebois.com/inventory";
+		var str = $("#getForm").serialize();
+		var url = protoURL + '?' + str;
+		console.log(url);
+		getXHR.open("GET", url, true);
+		getXHR.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		getXHR.send(null);
 	}
 	
 	getForm.addEventListener("submit", function(event) {
 		event.preventDefault();
+		var wrapper = $("#wrapper");
+		//wrapper.empty();
 		sendData();
-
 		// Reenable all elements on the form
 		for (var i = 0; element = elements[i++];) {
 			element.disabled = false;
