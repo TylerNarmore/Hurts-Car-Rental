@@ -1,0 +1,227 @@
+html {
+  box-sizing: border-box;
+  text-align: center;
+}
+ 
+main {
+    font-size: 1em;
+    line-height: 1.5;
+    font-family: 'Permanent Marker';
+    max-width: 43.75em; /* 880/16 */
+    margin: 0 auto;
+    padding: 0;
+    color: #FFD700;
+}
+
+/*
+	Header Styles
+*/
+header {
+	margin: 1em 0 2em;
+	color: #FFD700;
+}
+
+	header h1 {
+		font-family: 'Permanent Marker', cursive;
+		font-size: 3em;
+		text-shadow: 0 4px 2px rgba(0, 0, 0, .1);
+		margin: 0;
+	}
+
+		header h1 a {
+			text-decoration: none;
+		}
+
+	header p {
+		margin-top: -.625em;
+		text-indent: 7.75em; /* indent slightly */
+		text-shadow: 0 1px 0px rgba(0, 0, 0, .15);
+		font-family: 'Permanent Marker', cursive;
+		font-size: .875em; /* 14/16 */
+		font-style: italic;
+	}
+
+@media screen and (max-width: 600px) {
+	header p {
+		text-indent: 0;
+		margin-top: .5em;
+	}
+}
+
+/*
+	Form Input
+	Styles for the form input and buttons
+*/
+form {
+	position: relative;
+}
+
+	form input{
+		display: inline-block;
+		padding: 2px 3px;
+		text-align: center;
+		font-family: 'Permanent Marker';
+		font-size: 1em;
+		line-height: 1.5;
+		margin: 0;
+		border: 1px solid #bbb;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, .1) inset,
+					0 2px 4px rgba(0, 0, 0, .1);
+		border-radius: 5px;
+	}
+
+		form input:focus {
+			border-color: #FFD700;
+			background-color: #FAFAD2;
+		}
+
+	form button {
+		text-decoration: none;
+		background: #FFD700;
+		position: relative;
+		right: 0;
+		top: 0;
+		line-height: 1.5;
+		color: black;
+		font-size: 1em;
+		border-radius: 50%;
+		border: 0;
+		outline: 0;
+		text-align: center;
+		-webkit-appearance: none;
+		margin: 0;
+		padding: 0 2em;
+		font-family: 'Permanent Marker';
+	}
+		form button:hover {
+			cursor: pointer;
+		}
+
+		form button:disabled {
+			opacity: .5;
+		}
+
+/*
+	Content Styles
+	Main container for content, i.e. the resulting vehicles
+*/
+#wrapper {
+	background: 'assets/imgs/bg_stars.gif';
+	border: 1px solid #ccc;
+	text-align: center;
+	padding: 0.5em;
+	margin: .5em 0 2em;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+	border-radius: 3px;
+	position: relative;
+}
+
+.map {
+    height: 400px;
+    width: 100%;
+    display: none;
+    border-radius: 12px;
+    margin: 1em 0;
+}
+
+.container {
+	border-bottom: 3px solid white;
+	padding: 0.75em;
+	position: relative;
+	overflow: auto;
+}
+
+.outputField {
+	margin: 2em 0 0.5em;
+}
+
+.make {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.model {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.year {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.type {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.location {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.cost {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.mpg {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.passengers {
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	padding: 0.5em;
+	border: 2px solid white;
+	background: black;
+}
+
+.rentMe {
+	text-decoration: none;
+	background: #FFD700;
+	position: relative;
+	right: 0;
+	top: 0;
+	line-height: 1.5;
+	color: black;
+	font-size: 1em;
+	border-radius: 50%;
+	border: 0;
+	outline: 0;
+	text-align: center;
+	-webkit-appearance: none;
+	margin: 0;
+	padding: 0 2em;
+	font-family: 'Permanent Marker';
+}
