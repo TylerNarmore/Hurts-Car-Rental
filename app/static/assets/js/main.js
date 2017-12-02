@@ -283,6 +283,10 @@ window.addEventListener("load", function() {
 							alert('An error has occured');
 						});
 
+						sendXHR.addEventListener('load', function(event) {
+							alert('Vehicle rented!')
+						});
+
 						// Set up POST request
 						sendXHR.open("POST", "http://softwarebois.com/purchase/12345", true);
 
