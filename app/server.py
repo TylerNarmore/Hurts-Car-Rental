@@ -11,8 +11,8 @@ def christmas():
     return """
     <html>    
         <body>
-            <h1>Happy Holidays from the Software Bois</h1>
-            <img src="imgs/ChristmasCard" alt="Christmas Bois" style="max-width:100%;max-height=100%">
+            <center><h1>Happy Holidays from the Software Bois</h1></center>
+            <img src="/static/imgs/ChristmasCard.png" alt="Christmas Bois" style="max-width:100%;max-height=100%">
         </body>
     </html>
     """
