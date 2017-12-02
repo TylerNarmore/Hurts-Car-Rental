@@ -13,7 +13,7 @@ def index():
     return ''' 
     <html>    
         <body>
-            <img src="static/img/ChristmasPhoto.jpg" alt="Slight Typo in the logo" style="max-width:100%;max-height=100%">
+            <img src="static/img/ChristmasCard.png" alt="Happy Holidays from the Software Bois" style="max-width:100%;max-height=100%">
         </body>
     </html>
     '''
