@@ -72,6 +72,7 @@ form {
 
 		form input:focus {
 			border-color: #FFD700;
+			background-color: #FAFAD2;
 		}
 
 	form button {
@@ -105,14 +106,22 @@ form {
 	Main container for content, i.e. the resulting vehicles
 */
 #wrapper {
-	background: #000;
+	background: 'assets/imgs/bg_stars.gif';
 	border: 1px solid #ccc;
 	text-align: center;
-	padding: 2em;
+	padding: 0.5em;
 	margin: .5em 0 2em;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 	border-radius: 3px;
 	position: relative;
+}
+
+.map {
+    height: 400px;
+    width: 100%;
+    display: none;
+    border-radius: 12px;
+    margin: 1em 0;
 }
 
 .container {
@@ -132,6 +141,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .model {
@@ -140,6 +150,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .year {
@@ -148,6 +159,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .type {
@@ -156,6 +168,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .location {
@@ -164,6 +177,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .cost {
@@ -172,6 +186,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .mpg {
@@ -180,6 +195,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .passengers {
@@ -188,6 +204,7 @@ form {
 	border-radius: 50%;
 	padding: 0.5em;
 	border: 2px solid white;
+	background: black;
 }
 
 .rentMe {

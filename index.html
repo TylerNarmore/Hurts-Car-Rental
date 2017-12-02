@@ -19,12 +19,13 @@
   			<fieldset>
   				<legend>Input Car Rental Information</legend>
   				<input type="text" name="location" id="location" placeholder=" Location"><br>
+  				<div id="map" class="map"></div>
   				<br>
   				Start Date:
-  				<input type="text" name="startDate" id="start" placeholder="YYYY-MM-DD"><br>
+  				<input type="datetime-local" name="startDate" id="start"><br>
   				<br>
   				End Date:  
-  				<input type="text" name="endDate" id="end" placeholder="YYYY-MM-DD"><br>
+  				<input type="datetime-local" name="endDate" id="end"><br>
   				<br>
   				<input type="number" name="minPrice" id="minPrice" placeholder=" Minimum Price"><br>
   				<br>
@@ -43,8 +44,11 @@
   				<input type="number" name="minMPG" id="minMPG" placeholder=" Minimum MPG"><br><br>
   				<button type="submit">Search</button>
   				<button type="submit">Display All</button>
+  				<button onClick="window.location.reload()">Clear</button>
   			</fieldset> 
+
   		</form>
+
   		<!-- ./input -->
   		<!-- output -->
   		<div id="wrapper">
@@ -52,11 +56,11 @@
   				<div class="make"></div>
   				<div class="model"></div>
   				<div class="year"></div>
-  				<div class="type"></div>
-  				<div class="location"></div>
+  				<div class="type"></div><br>
   				<div class="cost"></div>
   				<div class="mpg"></div>
-  				<div class="passengers"></div>
+  				<div class="passengers"></div><br>
+  				<div class="location"></div>
   			</div>
   		</div>
   		<!-- ./output -->
@@ -64,5 +68,8 @@
   	<footer></footer>
   	<script type="text/javascript" src="assets/js/libs/jquery-3.1.1.min.js"></script>
   	<script type="text/javascript" src="assets/js/main.js"></script>
+  	<script async defer
+    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjSWNyYv2Zm5r6BUjQgDZIxq7bEnoit1A&callback=initMap">
+    </script>
   </body>
  </html>
