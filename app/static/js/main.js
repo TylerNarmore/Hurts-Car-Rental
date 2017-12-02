@@ -2,7 +2,7 @@
  * main.js Handles API calls
  *--------------------------------------------------------------------*/
  // HEY ASSHOLE ALERT THEM WHEN THEY RENT A CAR
-myAudio = new Audio('sounds/bg_music.mp3');
+myAudio = new Audio('/static/sounds/bg_music.mp3');
 if (typeof myAudio.loop == 'boolean') {
 	myAudio.loop = true;
 }
@@ -154,15 +154,15 @@ window.addEventListener("load", function() {
 					window.location.href = "http://spacejam.com";
 				}
 				else if (element.value === "Game Over") {
-					gameOver = new Audio('sounds/gameOver.mp3');
+					gameOver = new Audio('/static/sounds/gameOver.mp3');
 					gameOver.play();
 				}
 				else if (element.value === "Ice Cold") {
-					iceCold = new Audio('sounds/ice.mp3');
+					iceCold = new Audio('/static/sounds/ice.mp3');
 					iceCold.play();
 				}
 				else if (element.value === "Lisa") {
-					lisa = new Audio('sounds/lisa.mp3');
+					lisa = new Audio('/static/sounds/lisa.mp3');
 					lisa.play();
 				}
 				else {
