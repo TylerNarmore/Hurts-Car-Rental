@@ -171,6 +171,11 @@ form {
 	Content Styles
 	Main container for content, i.e. the resulting vehicles
 */
+#revenue {
+	font-family: 'Permanent Marker';
+	font-size: 1em;
+	position: inline-block;
+}
 #wrapper {
 	background: 'static/imgs/bg_stars.gif';
 	border: 1px solid #ccc;

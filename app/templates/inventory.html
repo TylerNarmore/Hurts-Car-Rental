@@ -11,7 +11,7 @@
   <body background="/static/imgs/bg_stars.gif">
   	<header>
   		<h1><a>Hurts Car Rental</a></h1>
-  		<p>Total Revenue:</p>
+      <div id="revenue"></div>
   	</header>
   	<main>
   		<a href="./index.html" class="inventory">Users</a>
@@ -30,10 +30,10 @@
   				<br>
   				<input type="number" name="cost" id="cost" placeholder="Cost"><br>
   				<br>
-  				<input type="number" name="minPassenger" id="minPassenger" placeholder="  Passengers"><br>
+  				<input type="number" name="passengers" id="passengers" placeholder="Passengers"><br>
   				<br>
   				Automatic Transmission:
-  				<input type="radio" name="autoTransmission" value="1">Yes
+  				<input type="radio" name="autoTransmission" value="1" id="autoTransmission">Yes
   				<input type="radio" name="autoTransmission" value="0">No<br>
   				<br>
   				<input type="text" name="type" id="type" placeholder=" Type"><br>
@@ -42,19 +42,19 @@
   				<fieldset>
   					<legend>Input Special Equipment</legend>
   					GPS:
-  					<input type="radio" name="gps" value="1">Yes
+  					<input type="radio" name="gps" value="1" id="gps">Yes
   					<input type="radio" name="gps" value="0">No<br>
   					Child Seats:
-  					<input type="number" name="maxChildSeat"><br>
+  					<input type="number" name="maxChildSeat" id="maxChildSeat"><br>
   					Ski Rack:
-  					<input type="radio" name="skiRack" value="1">Yes
-  					<input type="radio" name="skiRack" value="0">No<br>
+  					<input type="radio" name="skiRack" value="1" id="skiRack">Yes
+  					<input type="radio" name="skiRack" value="0" id="skiRack">No<br>
   					Snow Chains:
-  					<input type="radio" name="snowChains" value="1">Yes
-  					<input type="radio" name="snowChains" value="0">No<br>
+  					<input type="radio" name="snowChains" value="1" id="snowChains">Yes
+  					<input type="radio" name="snowChains" value="0" id="snowChains">No<br>
   					Control:
-  					<input type="radio" name="leftControl" value="1">Left
-  					<input type="radio" name="leftControl" value="0">Right<br>
+  					<input type="radio" name="leftControl" value="1" id="leftControl">Left
+  					<input type="radio" name="leftControl" value="0" id="leftControl">Right<br>
   				</fieldset><br>
   				<button type="submit" id="add">Add Vehicle</button>
   				<button onClick="window.location.reload()">Clear</button>
