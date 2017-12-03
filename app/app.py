@@ -53,6 +53,11 @@ def search_reservations():
     else:
         return jsonify(status=search_results[0], message=search_results[1])
 
+@app.route('/money', methods=["GET"])
+def get_revenue():
+    money = vehicles.get_revenue()
+
+    return jsonify(revenue=money)
 
 
 #User Functions

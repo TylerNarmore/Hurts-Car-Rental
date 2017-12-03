@@ -173,6 +173,23 @@ def search_reservations(search_terms):
         return(("200", reservations_info_list))
 
 
+def get_revenue():
+    conn = sqlite3.connect(dbAddress)
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT cost, startDate, endDate FROM inventory i INNER JOIN reservation r on r.vehicleID = i.vehicleID;")
+    reservations = cursor.fetchall()
+    conn.close()
+    total_revenue = 0
+    for reservation in reservations:
+        days = datetime.datetime.strptime(reservation[2], '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(reservation[1], '%Y-%m-%dT%H:%M:%S')
+        rental_price = reservation[0] * days.days
+        total_revenue += rental_price
+    return total_revenue
+
+
+
+#Users
 def find_vehicle(search_terms):
     #Search terms is a dictionary of terms being searched with the category
     conn = sqlite3.connect(dbAddress)
