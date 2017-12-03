@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------
  * main.js Handles API calls
  *--------------------------------------------------------------------*/
-myAudio = new Audio('sounds/bg_music.mp3');
+myAudio = new Audio('/static/sounds/bg_music.mp3');
 if (typeof myAudio.loop == 'boolean') {
 	myAudio.loop = true;
 }
