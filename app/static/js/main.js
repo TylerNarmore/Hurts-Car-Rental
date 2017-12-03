@@ -1,8 +1,7 @@
 /*--------------------------------------------------------------------
  * main.js Handles API calls
  *--------------------------------------------------------------------*/
- // HEY ASSHOLE ALERT THEM WHEN THEY RENT A CAR
-myAudio = new Audio('/static/sounds/bg_music.mp3');
+myAudio = new Audio('sounds/bg_music.mp3');
 if (typeof myAudio.loop == 'boolean') {
 	myAudio.loop = true;
 }
@@ -241,7 +240,15 @@ window.addEventListener("load", function() {
 					var text = document.createTextNode("RENT ME");
 					button.append(text);
 
+					// Attach rent buttons to each div
+					var delbutton = document.createElement("button");
+					delbutton.id = each;
+					delbutton.className = "rentMe";
+					var text = document.createTextNode("DELETE");
+					delbutton.append(text);
+
 					tempContainer.append(button);
+					tempContainer.append(delbutton);
 					wrapper.append(tempContainer);
 				}
 
@@ -314,8 +321,9 @@ window.addEventListener("load", function() {
 	
 	getForm.addEventListener("submit", function(event) {
 		event.preventDefault();
-		var wrapper = $("#wrapper");
-		//wrapper.empty();
+		var wrapper = document.getElementById('wrapper');
+		wrapper.style.display = "block";
+		
 		sendData();
 		// Reenable all elements on the form
 		for (var i = 0; element = elements[i++];) {

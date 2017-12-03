@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>Hurts Car Rental</title>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" href="/static/imgs/icon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  </head>
+  <body background="/static/imgs/bg_stars.gif">
+  	<header>
+  		<h1><a>Hurts Car Rental</a></h1>
+  		<p>Total Revenue:</p>
+  	</header>
+  	<main>
+  		<a href="./index.html" class="inventory">Users</a>
+  		<form id="postForm">
+  			<fieldset>
+				<legend>Input Car Rental Information</legend>
+  				<input type="text" name="vehicleID" id="vehicleID" placeholder="Vehicle ID"><br>
+  				<br>
+  				<input type="text" name="make" id="make" placeholder=" Make"><br>
+  				<br>
+  				<input type="text" name="model" id="model" placeholder=" Model"><br>
+  				<br>
+  				<input type="text" name="year" id="year" placeholder=" Year"><br>
+  				<br>
+  				<input type="text" name="location" id="location" placeholder="Location"><br>
+  				<br>
+  				<input type="number" name="cost" id="cost" placeholder="Cost"><br>
+  				<br>
+  				<input type="number" name="minPassenger" id="minPassenger" placeholder="  Passengers"><br>
+  				<br>
+  				Automatic Transmission:
+  				<input type="radio" name="autoTransmission" value="1">Yes
+  				<input type="radio" name="autoTransmission" value="0">No<br>
+  				<br>
+  				<input type="text" name="type" id="type" placeholder=" Type"><br>
+  				<br>
+  				<input type="number" name="mpg" id="mpg" placeholder="MPG"><br><br>
+  				<fieldset>
+  					<legend>Input Special Equipment</legend>
+  					GPS:
+  					<input type="radio" name="gps" value="1">Yes
+  					<input type="radio" name="gps" value="0">No<br>
+  					Child Seats:
+  					<input type="number" name="maxChildSeat"><br>
+  					Ski Rack:
+  					<input type="radio" name="skiRack" value="1">Yes
+  					<input type="radio" name="skiRack" value="0">No<br>
+  					Snow Chains:
+  					<input type="radio" name="snowChains" value="1">Yes
+  					<input type="radio" name="snowChains" value="0">No<br>
+  					Control:
+  					<input type="radio" name="leftControl" value="1">Left
+  					<input type="radio" name="leftControl" value="0">Right<br>
+  				</fieldset><br>
+  				<button type="submit" id="add">Add Vehicle</button>
+  				<button onClick="window.location.reload()">Clear</button>
+  			</fieldset>
+  		</form><br>
+  		<input type="text" id="ID" name="ID" class="ID" placeholder="Vehicle ID">
+  		<button id="delete" class="button">Delete Vehicle</button>
+  	</main>
+  <footer></footer>
+  <script type="text/javascript" src="/static/js/libs/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="/static/js/inventory.js"></script>
+  </body>
+ </html>
