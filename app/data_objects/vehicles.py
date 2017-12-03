@@ -290,9 +290,9 @@ def purchase_vehicle(purchaseInformation):
     vehicleID = purchaseInformation["vehicleID"]
     startDate = purchaseInformation["startDate"]
     endDate = purchaseInformation["endDate"]
-    if (len(startDate) == 17):
+    if (len(startDate) == 16):
         startDate += ":00"
-    elif (len(endDate) == 17):
+    elif (len(endDate) == 16):
         endDate += ":00"
     conn = sqlite3.connect(dbAddress)
     cursor = conn.cursor()
